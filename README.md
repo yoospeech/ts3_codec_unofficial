@@ -1,0 +1,131 @@
+# TS3Codec (Unofficial)
+
+Unofficial training and inference implementation of
+**[TS3-Codec: Transformer-Based Simple Streaming Single Codec](https://arxiv.org/abs/2411.18803)**
+for 16 kHz speech. This repository is derived from the
+[BigCodec](https://github.com/Aria-K-Alethia/BigCodec) implementation and keeps
+the original MIT license and attribution.
+
+> This is an unofficial research implementation and is not affiliated with the
+> authors of the paper.
+
+## Features
+
+- 16 kHz waveform codec training with PyTorch Lightning
+- Transformer-based causal encoder and decoder
+- Low-dimensional residual vector quantization
+- Multi-period and multi-resolution STFT adversarial training
+- File-list and JSON-manifest dataset loading
+- Checkpoint resume and standalone waveform reconstruction
+
+## Installation
+
+Python 3.9 or a compatible environment is recommended.
+
+```bash
+git clone <repository-url>
+cd BigCodec_trn_16khz_repo
+pip install -r requirements.txt
+```
+
+## Dataset manifest
+
+Dataset manifests are intentionally excluded because they contain local paths.
+The loader accepts either a text file list or a JSON manifest. A JSON manifest
+can contain entries such as:
+
+```json
+[
+  {"audio_filepath": "/absolute/path/to/audio.wav"}
+]
+```
+
+Set `TRAIN_FILELIST`, `VAL_FILELIST`, and `TEST_FILELIST` to your own manifests.
+You can create a JSON manifest from a text file containing one WAV path per line:
+
+```bash
+python make_json.py wav_paths.txt manifest.json
+```
+
+## Training
+
+The shell entry point contains the 16 kHz and model overrides used for training:
+
+```bash
+TRAIN_FILELIST=/path/to/train.json \
+VAL_FILELIST=/path/to/validation.json \
+BATCH_SIZE=64 \
+DEVICES=1 \
+./train.sh
+```
+
+Resume training with a Lightning checkpoint:
+
+```bash
+./train.sh +resume_ckpt=/path/to/last.ckpt
+```
+
+Additional Hydra overrides may be appended to either command.
+
+## Pretrained checkpoint
+
+The pretrained checkpoint is hosted on Hugging Face rather than Git because of
+its size:
+
+```text
+https://huggingface.co/<organization-or-user>/<model-repository>
+```
+
+After downloading it, run inference with:
+
+```bash
+CKPT=/path/to/last.ckpt \
+INPUT_DIR=/path/to/input_wavs \
+OUTPUT_DIR=./recon_wavs \
+./inference.sh
+```
+
+## Training logs
+
+Representative TensorBoard logs are published under `training_logs/`. View them
+with:
+
+```bash
+tensorboard --logdir training_logs
+```
+
+## Acknowledgements
+
+This project builds on the official BigCodec codebase:
+
+- [BigCodec](https://github.com/Aria-K-Alethia/BigCodec) provides the original
+  neural codec training framework.
+- [llama2.c](https://github.com/karpathy/llama2.c) by Andrej Karpathy was a
+  major reference for the Transformer implementation in `vq/llama_mini.py`.
+
+Third-party copyright and license notices are retained in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+```bibtex
+@article{xin2024bigcodec,
+  title={BigCodec: Pushing the Limits of Low-Bitrate Neural Speech Codec},
+  author={Xin, Detai and Tan, Xu and Takamichi, Shinnosuke and Saruwatari, Hiroshi},
+  journal={arXiv preprint arXiv:2409.05377},
+  year={2024}
+}
+```
+
+Please also cite TS3-Codec:
+
+```bibtex
+@article{wu2024ts3codec,
+  title={TS3-Codec: Transformer-Based Simple Streaming Single Codec},
+  author={Wu, Haibin and Kanda, Naoyuki and Eskimez, Sefik Emre and Li, Jinyu},
+  journal={arXiv preprint arXiv:2411.18803},
+  year={2024}
+}
+```
+
+## License
+
+MIT. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
