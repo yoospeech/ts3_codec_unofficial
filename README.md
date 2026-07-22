@@ -107,8 +107,8 @@ The source and reconstruction have different sample rates. See
 ## Training logs
 
 The released pretrained checkpoint was trained for approximately **81,500
-steps** on an **NVIDIA DGX Spark**. Representative TensorBoard logs are
-published under `training_logs/`. View them with:
+steps** over about **10 days** on an **NVIDIA DGX Spark**. Representative
+TensorBoard logs are published under `training_logs/`. View them with:
 
 ```bash
 tensorboard --logdir training_logs
