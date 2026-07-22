@@ -69,17 +69,26 @@ Additional Hydra overrides may be appended to either command.
 
 ## Pretrained checkpoint
 
-The pretrained checkpoint is hosted on Hugging Face rather than Git because of
-its size:
-
-```text
-https://huggingface.co/<organization-or-user>/<model-repository>
-```
-
-After downloading it, run inference with:
+The pretrained Lightning checkpoint is hosted in the
+[TS3Codec unofficial Hugging Face model repository](https://huggingface.co/youspeech/ts3_codec_unofficial)
+rather than Git because of its size. Download the checkpoint and its checksum:
 
 ```bash
-CKPT=/path/to/last.ckpt \
+hf download \
+  youspeech/ts3_codec_unofficial \
+  ts3codec_16khz.ckpt \
+  SHA256SUMS \
+  --local-dir checkpoints
+
+cd checkpoints
+sha256sum -c SHA256SUMS
+cd ..
+```
+
+Then run inference with:
+
+```bash
+CKPT=checkpoints/ts3codec_16khz.ckpt \
 INPUT_DIR=/path/to/input_wavs \
 OUTPUT_DIR=./recon_wavs \
 ./inference.sh
