@@ -47,6 +47,18 @@ You can create a JSON manifest from a text file containing one WAV path per line
 python make_json.py wav_paths.txt manifest.json
 ```
 
+## Training data
+
+The released pretrained model was trained on a combination of:
+
+- [LibriSpeech](https://ieeexplore.ieee.org/document/7178964), an English
+  read-speech corpus
+- [KsponSpeech](https://www.mdpi.com/2076-3417/10/19/6936), a Korean
+  spontaneous-speech corpus
+
+Dataset files and manifests are not redistributed in this repository. Users
+must obtain each dataset separately and comply with its applicable terms.
+
 ## Training
 
 The shell entry point contains the 16 kHz and model overrides used for training:
@@ -143,6 +155,30 @@ Please also cite TS3-Codec:
   author={Wu, Haibin and Kanda, Naoyuki and Eskimez, Sefik Emre and Li, Jinyu},
   journal={arXiv preprint arXiv:2411.18803},
   year={2024}
+}
+```
+
+### Dataset citations
+
+```bibtex
+@inproceedings{panayotov2015librispeech,
+  title={LibriSpeech: An ASR Corpus Based on Public Domain Audio Books},
+  author={Panayotov, Vassil and Chen, Guoguo and Povey, Daniel and Khudanpur, Sanjeev},
+  booktitle={2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={5206--5210},
+  year={2015},
+  doi={10.1109/ICASSP.2015.7178964}
+}
+
+@article{bang2020ksponspeech,
+  title={KsponSpeech: Korean Spontaneous Speech Corpus for Automatic Speech Recognition},
+  author={Bang, Jeong-Uk and Yun, Seung and Kim, Seung-Hi and Choi, Mu-Yeol and Lee, Min-Kyu and Kim, Yeo-Jeong and Kim, Dong-Hyun and Park, Jun and Lee, Young-Jik and Kim, Sang-Hun},
+  journal={Applied Sciences},
+  volume={10},
+  number={19},
+  pages={6936},
+  year={2020},
+  doi={10.3390/app10196936}
 }
 ```
 
