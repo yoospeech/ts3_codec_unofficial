@@ -64,11 +64,7 @@ must obtain each dataset separately and comply with its applicable terms.
 The shell entry point contains the 16 kHz and model overrides used for training:
 
 ```bash
-TRAIN_FILELIST=/path/to/train.json \
-VAL_FILELIST=/path/to/validation.json \
-BATCH_SIZE=64 \
-DEVICES=1 \
-./train.sh
+TRAIN_FILELIST=train.json bash ./train.sh dataset.random_val_ratio=0.001 dataset.random_val_seed=42
 ```
 
 Resume training with a Lightning checkpoint:
