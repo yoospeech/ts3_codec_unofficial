@@ -96,8 +96,9 @@ OUTPUT_DIR=./recon_wavs \
 
 ## Training logs
 
-Representative TensorBoard logs are published under `training_logs/`. View them
-with:
+The released pretrained checkpoint was trained for approximately **81,500
+steps** on an **NVIDIA DGX Spark**. Representative TensorBoard logs are
+published under `training_logs/`. View them with:
 
 ```bash
 tensorboard --logdir training_logs
