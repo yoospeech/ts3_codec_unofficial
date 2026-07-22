@@ -94,6 +94,16 @@ OUTPUT_DIR=./recon_wavs \
 ./inference.sh
 ```
 
+## Audio samples
+
+Example reconstruction for LibriTTS-R utterance `2078_142845_000085_000003`:
+
+- [Original (24 kHz)](samples/2078_142845_000085_000003_original_24khz.wav)
+- [TS3Codec reconstruction (16 kHz)](samples/2078_142845_000085_000003_reconstructed_16khz.wav)
+
+The source and reconstruction have different sample rates. See
+[samples/README.md](samples/README.md) for provenance and licensing information.
+
 ## Training logs
 
 The released pretrained checkpoint was trained for approximately **81,500
