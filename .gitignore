@@ -27,6 +27,7 @@ BigCodec_trn.tar.gz
 filelists/
 *.json
 *.txt
+!requirements.txt
 
 # Training artifacts (pretrained checkpoints are published on Hugging Face)
 *.ckpt
